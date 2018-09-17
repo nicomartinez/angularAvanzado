@@ -3,7 +3,6 @@ import { GitSearchService } from '../git-search.service'
 import { GitSearch } from '../git-search'
 import { ActivatedRoute, ParamMap, Router } from '@angular/router'
 import { AdvancedSearchModel } from '../advanced-search-model';
-import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-git-search',
   templateUrl: './git-search.component.html',
@@ -14,13 +13,10 @@ export class GitSearchComponent implements OnInit {
   searchQuery: string;
   displayQuery: string;
   title: string;
-  form: FormGroup;
-  formControls = {};
-  
-  constructor(private GitSearchService: GitSearchService, private route: ActivatedRoute, private router: Router ) { }
-  
   model = new AdvancedSearchModel('', '', '', null, null, '');
   modelKeys = Object.keys(this.model);
+  constructor(private GitSearchService: GitSearchService, private route: ActivatedRoute, private router: Router ) { }
+
 
   ngOnInit() {
     this.route.paramMap.subscribe( (params: ParamMap) => {
