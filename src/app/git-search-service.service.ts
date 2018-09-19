@@ -12,7 +12,7 @@ export class GitSearchService {
   }
 
   gitSearch : Function = (query: string) : Promise<GitSearch> => {
-    let promise = new Promise((resolve, reject) => {
+    let promise = new Promise<GitSearch>((resolve, reject) => {
         if (this.cachedValues[query]) {
             resolve(this.cachedValues[query])
         }
