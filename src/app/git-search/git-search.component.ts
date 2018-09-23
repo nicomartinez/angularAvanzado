@@ -13,10 +13,11 @@ export class GitSearchComponent implements OnInit {
   searchQuery: string;
   displayQuery: string;
   title: string;
+  favorites: Array<number> = [];
+  constructor(private UnifiedSearchService: UnifiedSearchService, private route: ActivatedRoute, private router: Router ) { }
+  
   model = new AdvancedSearchModel('', '', '', null, null, '');
   modelKeys = Object.keys(this.model);
-  constructor(private UnifiedSearchService: UnifiedSearchService, private route: ActivatedRoute, private router: Router ) { }
-
 
   ngOnInit() {
     this.route.paramMap.subscribe( (params: ParamMap) => {
@@ -33,10 +34,18 @@ export class GitSearchComponent implements OnInit {
     return typeof this.model[key] === 'string' ? 'text' : typeof this.model[key];
   }
 
+  handleFavorite = (model) => {
+    if(model[1]) {
+      this.favorites.push(model[0]);
+    } else {
+      this.favorites = this.favorites.filter(item => item !== model[0]);
+    }
+  }
+
   gitSearch = () => {
     this.UnifiedSearchService.unifiedSearch(this.searchQuery).subscribe( (response) => {
       console.log(response);
-      this.searchResults = response.repositories;
+      this.searchResults = response;
     }, (error) => {
       alert("Error: " + error.statusText)
     })

@@ -12,6 +12,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoSpecialCharsDirective } from './no-special-chars.directive';
 import { GitCodeSearchComponent } from './git-code-search/git-code-search.component';
+import { RepositoryDisplayComponent } from './repository-display/repository-display.component';
+import { CodeDisplayComponent } from './code-display/code-display.component';
+import { FadeDirective } from './fade.directive';
+import { FavoriteTextPipe } from './favorite-text.pipe';
 
 const appRoutes: Routes = [
   { path: '', 
@@ -35,7 +39,11 @@ const appRoutes: Routes = [
     HomePageComponent,
     NotFoundComponent,
     NoSpecialCharsDirective,
-    GitCodeSearchComponent
+    GitCodeSearchComponent,
+    RepositoryDisplayComponent,
+    CodeDisplayComponent,
+    FadeDirective,
+    FavoriteTextPipe
   ],
   imports: [
     BrowserModule,
